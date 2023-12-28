@@ -4,7 +4,7 @@
   "description": "ares-server",
   "main": "dist/index.js",
   "scripts": {
-    "ares": "nodemon --watch src --exec 'npm run ares-start'",
+    "ares": "nodemon --watch src --exec npm run ares-start",
     "ares-start": "rimraf ./dist && tsc && node dist/src/index.js"
   },
   "repository": {

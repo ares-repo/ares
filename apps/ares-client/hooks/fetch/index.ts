@@ -27,7 +27,7 @@ export const useFetch = <T>(url: string): FetchDataResult<T> => {
           const res = await response.json();
           setData(res as T);
         } else {
-          throw new Error("Failed to fetch data");
+          setError(new Error("Bad response"));
         }
       } catch (err) {
         setError(err as Error);

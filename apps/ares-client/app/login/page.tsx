@@ -2,14 +2,17 @@
 
 import { User, login } from "@/helpers/auth/login";
 import { useVerifyToken } from "@/helpers/auth/verifyJwt";
+import { Status } from "@/types/response/status";
 import { Spin } from "antd";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 const Login = () => {
   const router = useRouter();
 
-  const { isLoading } = useVerifyToken();
+  const { status } = useVerifyToken();
+  const pathname = usePathname();
+  console.log("pathname", pathname);
   const handleLogin = async () => {
     await login("Rinor", "rkas").then((user) => {
       localStorage.setItem("token", user.tokens.accessToken);
@@ -17,7 +20,8 @@ const Login = () => {
   };
   const user = useContext(User);
 
-  return isLoading ? (
+  console.log("status", status);
+  return status === Status.success ? (
     <Spin fullscreen />
   ) : (
     <div
