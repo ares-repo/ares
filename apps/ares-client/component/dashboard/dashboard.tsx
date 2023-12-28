@@ -13,9 +13,8 @@ export const Dashboard = () => {
     <Spin />
   ) : (
     <div>
-      {data?.map((user) => (
-        // eslint-disable-next-line react/jsx-key
-        <div>{user.name}</div>
+      {data?.map((user, id) => (
+        <div key={id}>{user.name}</div>
       ))}
     </div>
   );
