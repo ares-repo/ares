@@ -1,5 +1,5 @@
 import { UserContext } from "@/types/user/user";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 export const User = createContext<UserContext>({
   user: undefined,
@@ -7,6 +7,7 @@ export const User = createContext<UserContext>({
 });
 
 export const login = async (name: string, password: string) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(
       `${process.env.ARES_ENDPOINT}/api/auth/login`,

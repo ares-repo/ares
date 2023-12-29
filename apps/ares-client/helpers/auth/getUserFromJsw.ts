@@ -1,4 +1,4 @@
-import jwt, { decode, JwtPayload } from "jsonwebtoken";
+import { decode, JwtPayload } from "jsonwebtoken";
 
 export const getUserFromJwt = (token: string) => {
   if (!token) return null;
