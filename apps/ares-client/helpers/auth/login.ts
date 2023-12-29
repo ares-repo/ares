@@ -7,22 +7,27 @@ export const User = createContext<UserContext>({
 });
 
 export const login = async (name: string, password: string) => {
-  const response = await fetch(
-    `${process.env.ARES_ENDPOINT}/api/auth/login`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, password }),
-    }
-  );
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const response = await fetch(
+      `${process.env.ARES_ENDPOINT}/api/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, password }),
+      }
+    );
 
-  if (response.ok) {
-    const data = await response.json();
-    return data;
-  } else {
-    throw new Error("Failed to log in");
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to log in");
+    }
+  } catch (error) {
+    throw error;
   }
 };
 
